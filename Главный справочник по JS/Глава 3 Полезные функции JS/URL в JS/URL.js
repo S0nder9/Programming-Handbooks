@@ -28,6 +28,8 @@ console.log(newUrl.href); // Выведет: "https://www.example.com/newPath?ke
 
 // Открытие URl
 const urlMain = new URL("https://www.youtube.com/?hl=RU");
+body = document.createElement("p");
+document.body.append(urlMain)
 
 document.addEventListener("click", function () {
     window.open(urlMain);
