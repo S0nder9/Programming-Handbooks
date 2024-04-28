@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .animate {
+            animation: animationMain .5s ease-in-out 1 forwards;
+        }
+
+        @keyframes animationMain {
+            0% {
+               opacity: 0;
+               left: -253px;
+            }
+
+            20% {
+                opacity: .8px;
+                left: -200px;
+            }
+
+            50% {
+                 left: -100px;
+            }
+
+            100% {
+                 left: 500px;
+            }
+        }
+
+        $backgroundBoxColor: #eee;
+
+/* Reset & Quick Layout */
+
+* {
+	box-sizing: border-box;
+}
+
+img {
+	height: auto;
+	width: auto;
+	max-width: 100%;
+	max-height: 350px; 
+}
+
+h1 {
+	padding: 200px;
+	margin: 0 auto;
+	line-height: 1.5em;
+	max-width: 800px;
+	font-size: 36px;
+	font-weight: 700;
+	font-family: sans-serif;  
+	clear: both;
+}
+
+h1:before {
+	content: '';
+	width: 100px;
+	height: 5px;
+	background: #880e4f;
+	margin: 0 45px 10px -145px; 
+	display: inline-block;
+}
+
+body {
+	background: #fafafa;
+	padding: 0 20%;
+	> div {
+		clear: both;
+		overflow: hidden;
+		float: left;
+		max-width: 50%;
+		display: block; 
+		position: relative;
+		margin: 25px 150px; 
+		> .contentBox {
+			> p {
+				padding: 50px;
+				background: black;
+				color: white;
+				font-size: 20px;
+				font-family: sans-serif;
+				line-height: 1.5em;
+			}
+		}
+	}
+	> div:nth-child(2n) {
+			float: right; 
+	}
+ 
+} 
+
+
+
+
+/* Keyframes */
+
+@keyframes goRight {
+	from { left: 0; right: 100%; } 
+	40% { left: 0; right: 0; }
+	60% { left: 0; right: 0; }
+	to { left: 100%; right: 0; }
+}
+
+@keyframes goLeft {
+	from { left: 100%; right: 0; } 
+	40% { left: 0; right: 0; }
+	60% { left: 0; right: 0; }
+	to { left: 0; right: 100%; }
+}
+
+@keyframes goTop {
+	from { top: 100%; bottom: 0; } 
+	40% { top: 0; bottom: 0; }
+	60% { top: 0; bottom: 0; }
+	to { top: 0; bottom: 100% }
+}
+
+@keyframes goBottom {
+	from { top: 0; bottom: 100%; } 
+	40% { top: 0; bottom: 0; }
+	60% { top: 0; bottom: 0; }
+	to { top: 100%; bottom: 0; }
+}
+
+@keyframes backRight {
+	from { left: 0; right: 100%; } 
+	40% { left: 0; right: 0; }
+	60% { left: 0; right: 0; }
+	to { left: 0; right: 100%; }
+}
+
+@keyframes backLeft {
+	from { left: 100%; right: 0; } 
+	40% { left: 0; right: 0; }
+	60% { left: 0; right: 0; }
+	to { left: 100%; right: 0; }
+}
+
+@keyframes backTop {
+	from { top: 100%; bottom: 0; } 
+	40% { top: 0; bottom: 0; }
+	60% { top: 0; bottom: 0; }
+	to { top: 100%; bottom: 0 }
+}
+
+@keyframes backBottom {
+	from { top: 0; bottom: 100%; } 
+	40% { top: 0; bottom: 0; }
+	60% { top: 0; bottom: 0; }
+	to { top: 0; bottom: 100%; }
+}
+
+/* Masks sizes */
+
+.revealedBox-in.goRight,
+.revealedBox-in.goLeft,
+.revealedBox-in.backRight,
+.revealedBox-in.backLeft {
+	> span { 
+		height: 100%; 
+		top: 0;
+	}
+}
+
+.revealedBox-in.goRight.childrenSpan-2,
+.revealedBox-in.goLeft.childrenSpan-2,
+.revealedBox-in.backRight.childrenSpan-2,
+.revealedBox-in.backLeft.childrenSpan-2 {
+	> span { height: 50%; }
+	> span:nth-child(2) { top: 50%; }
+}
+
+.revealedBox-in.goRight.childrenSpan-3,
+.revealedBox-in.goLeft.childrenSpan-3,
+.revealedBox-in.backRight.childrenSpan-3,
+.revealedBox-in.backLeft.childrenSpan-3 {
+	> span { height: 33.33333%; }
+	> span:nth-child(2) { top: 33.33333%; }
+	> span:nth-child(3) { top: 66.66666%; }
+}
+
+.revealedBox-in.goRight.childrenSpan-4,
+.revealedBox-in.goLeft.childrenSpan-4,
+.revealedBox-in.backRight.childrenSpan-4,
+.revealedBox-in.backLeft.childrenSpan-4 {
+	> span { height: 25%; }
+	> span:nth-child(2) { top: 25%; }
+	> span:nth-child(3) { top: 50%; }
+	> span:nth-child(4) { top: 75%; }
+}
+
+.revealedBox-in.goRight.childrenSpan-5,
+.revealedBox-in.goLeft.childrenSpan-5,
+.revealedBox-in.backRight.childrenSpan-5,
+.revealedBox-in.backLeft.childrenSpan-5 {
+	> span { height: 20%; }
+	> span:nth-child(2) { top: 20%; }
+	> span:nth-child(3) { top: 40%; }
+	> span:nth-child(4) { top: 60%; }
+	> span:nth-child(5) { top: 80%; }
+}
+
+.revealedBox-in.goTop,
+.revealedBox-in.goBottom,
+.revealedBox-in.backTop,
+.revealedBox-in.backBottom {
+	> span { width: 100%; }
+}
+
+.revealedBox-in.goTop.childrenSpan-2,
+.revealedBox-in.goBottom.childrenSpan-2,
+.revealedBox-in.backTop.childrenSpan-2,
+.revealedBox-in.backBottom.childrenSpan-2 {
+	> span { width: 50%; }
+	> span:nth-child(2) { left: 50%; }
+} 
+
+.revealedBox-in.goTop.childrenSpan-3,
+.revealedBox-in.goBottom.childrenSpan-3,
+.revealedBox-in.backTop.childrenSpan-3,
+.revealedBox-in.backBottom.childrenSpan-3 {
+	> span { width: 33.33333%; }
+	> span:nth-child(2) { left: 33.33333%; }
+	> span:nth-child(3) { left: 66.66666%; }
+}
+
+.revealedBox-in.goTop.childrenSpan-4,
+.revealedBox-in.goBottom.childrenSpan-4,
+.revealedBox-in.backTop.childrenSpan-4,
+.revealedBox-in.backBottom.childrenSpan-4 {
+	> span { width: 25%; }
+	> span:nth-child(2) { left: 25%; }
+	> span:nth-child(3) { left: 50%; }
+	> span:nth-child(4) { left: 75%; }
+}
+
+.revealedBox-in.goTop.childrenSpan-5,
+.revealedBox-in.goBottom.childrenSpan-5,
+.revealedBox-in.backTop.childrenSpan-5,
+.revealedBox-in.backBottom.childrenSpan-5 {
+	> span { width: 20%; }
+	> span:nth-child(2) { left: 20%; }
+	> span:nth-child(3) { left: 40%; }
+	> span:nth-child(4) { left: 60%; }
+	> span:nth-child(5) { left: 80%; }
+}
+
+/* Reveal the content */
+
+.revealedBox {
+	.contentBox {
+		opacity: 0;
+	} 
+	> span {
+		position: absolute;
+		display: block;   
+		background: $backgroundBoxColor; 
+	}
+}
+ 
+.revealedBox-in {
+	> .contentBox {
+		opacity: 1;
+		transition-delay: 1.05s;
+	} 
+} 
+
+/* Assign animations */ 
+
+.revealedBox-in.goRight { > span { animation: goRight 1.4s; }}
+.revealedBox-in.goLeft { > span { animation: goLeft 1.4s; }}
+.revealedBox-in.backRight {	> span { animation: backRight 1.4s; }}
+.revealedBox-in.backLeft { > span { animation: backLeft 1.4s; }}
+.revealedBox-in.goTop {	> span { animation: goTop 1.4s; }}
+.revealedBox-in.goBottom { > span { animation: goBottom 1.4s; }}
+.revealedBox-in.backTop {	> span { animation: backTop 1.4s; }}
+.revealedBox-in.backBottom { > span { animation: backBottom 1.4s; }}
+
+/* Add delay */
+
+.revealedBox-in > span { animation-delay: 0.1s; }
+.revealedBox-in > span:nth-child(2) {	animation-delay: 0.2s; }
+.revealedBox-in > span:nth-child(3) {	animation-delay: 0.3s; }
+.revealedBox-in > span:nth-child(4) {	animation-delay: 0.4s; }
+.revealedBox-in > span:nth-child(5) {	animation-delay: 0.5s; }
+
+
+
+
+    </style>
+</head>
+<body>
+    <!-- <div style="width: 100%;height: 200vh; display: flex; justify-content: start; align-items: center;" class="divMain">
+        <p class="animationText" style="position: relative; left: -253px;">Анимация при прокрутке страницы</p>
+    </div> -->
+
+    <h1>Scroll to trigger the effects</h1>
+    
+    <div class="scroll-animation revealedBox goRight">
+        <img class="contentBox" src="http://lorempixel.com/output/cats-q-c-640-480-4.jpg" alt="image" />
+        <span></span>
+        <span></span>
+    </div>
+    
+    <div class="scroll-animation revealedBox goLeft">
+        <img class="contentBox" src="http://lorempixel.com/output/cats-q-c-640-480-1.jpg" alt="image" />
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    
+    <div class="scroll-animation revealedBox goRight">
+        <div class="contentBox">
+            <p>It also work with text (or any) box</p>
+        </div>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    
+    <div class="scroll-animation revealedBox goTop">
+        <img class="contentBox" src="http://lorempixel.com/output/cats-q-c-640-480-3.jpg" alt="image" />
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    
+    <div class="scroll-animation revealedBox goBottom">
+        <img class="contentBox" src="http://lorempixel.com/output/cats-q-c-640-480-2.jpg" alt="image" />
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    
+    <div class="scroll-animation revealedBox goRight">
+        <div class="contentBox">
+            <p>Just add "revealedBox" and "go/back+Direction" classes on your DIV, and place .contenu with max five span
+                inside</p>
+        </div>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    
+    <h1>Scroll more to discover more effects</h1>
+    
+    <div class="scroll-animation revealedBox backRight">
+        <img class="contentBox" src="http://lorempixel.com/output/cats-q-c-640-480-4.jpg" alt="image" />
+        <span></span>
+        <span></span>
+    </div>
+    
+    <div class="scroll-animation revealedBox backLeft">
+        <img class="contentBox" src="http://lorempixel.com/output/cats-q-c-640-480-1.jpg" alt="image" />
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    
+    <div class="scroll-animation revealedBox backBottom">
+        <img class="contentBox" src="http://lorempixel.com/output/cats-q-c-640-480-3.jpg" alt="image" />
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    
+    <div class="scroll-animation revealedBox backTop">
+        <img class="contentBox" src="http://lorempixel.com/output/cats-q-c-640-480-2.jpg" alt="image" />
+        <span></span>
+    </div>
+    
+    <h1>Thank you for watching&nbsp;!</h1>
+
+    <script src="anim.js"></script>
+</body>
+</html>
