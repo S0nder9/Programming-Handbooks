@@ -104,3 +104,25 @@ comparative_operators(10, 5)  # Вывод: 10 is not equal to 5
 comparative_operators(5, 5)   # Вывод: 5 is equal to 5
                               # Вывод: 5 is greater than or equal to 5
                               # Вывод: 5 is less than or equal to 5
+
+# Match
+
+def match_example(value):
+    match value:
+        case 1:
+            return "Это единица"
+        case "hello":
+            return "Это приветствие"
+        case [1, 2, 3]:
+            return "Это список [1, 2, 3]"
+        case {"key": "value"}:
+            return "Это словарь {'key': 'value'}"
+        case _:
+            return "Неизвестное значение"
+
+if __name__ == "__main__":
+    # Тестирование функции match_example с различными значениями
+    test_values = [1, "hello", [1, 2, 3], {"key": "value"}, 42]
+    for value in test_values:
+        result = match_example(value)
+        print(f"Значение: {value} -> Результат: {result}")
