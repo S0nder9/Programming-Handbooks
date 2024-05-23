@@ -122,3 +122,15 @@ print(values)  # Вывод: dict_values(['Alice', 31, 'alice@example.com'])
 # Очистка словаря
 my_dict.clear()
 print(my_dict)  # Вывод: {}
+
+
+
+# Метод списка sum()
+
+def flatten_list(nested_list):
+    return sum(nested_list, [])
+
+# Пример использования
+nested_list = [[1, 2, 3], [4, 5], [6, 7, 8]]
+flat_list = flatten_list(nested_list)
+print(flat_list)  # Вывод: [1, 2, 3, 4, 5, 6, 7, 8]
