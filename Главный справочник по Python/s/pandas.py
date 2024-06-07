@@ -131,11 +131,213 @@ plt.xlabel('Столбцы')
 plt.ylabel('Значение')
 plt.show()
 
-# 11. Заключение
-"""
-Это руководство покрывает основные функции библиотеки Pandas. Pandas обладает гораздо большим количеством возможностей, включая работу с временными рядами, построение графиков, продвинутую фильтрацию и многое другое. Для более детального изучения рекомендую ознакомиться с официальной документацией Pandas.
-"""
+# 11. Работа с временными рядами
+# Создание временного ряда
+date_rng = pd.date_range(start='2020-01-01', end='2020-01-10', freq='D')
+time_series = pd.Series(np.random.randn(len(date_rng)), index=date_rng)
+print("\nВременной ряд:\n", time_series)
 
-if __name__ == "__main__":
-    print("\nЗапуск примеров из файла pandas_guide.py")
+# Скользящее среднее
+rolling_mean = time_series.rolling(window=3).mean()
+print("\nСкользящее среднее:\n", rolling_mean)
 
+# Построение временного ряда и скользящего среднего
+plt.figure(figsize=(10, 6))
+plt.plot(time_series, label='Временной ряд')
+plt.plot(rolling_mean, label='Скользящее среднее', color='red')
+plt.legend(loc='best')
+plt.title('Временной ряд и скользящее среднее')
+plt.show()
+
+# 12. Применение функций к данным
+# Применение функции к каждому элементу столбца
+df['A_squared'] = df['A'].apply(lambda x: x ** 2)
+print("\nDataFrame со столбцом 'A', возведенным в квадрат:\n", df)
+
+# Применение функции к каждой строке DataFrame
+df['sum_A_B'] = df.apply(lambda row: row['A'] + row['B'], axis=1)
+print("\nDataFrame с суммой столбцов 'A' и 'B':\n", df)
+
+# 13. Работа с категориальными данными
+# Создание категориальных данных
+df['Category'] = pd.Categorical(['test', 'train', 'test'])
+print("\nDataFrame с категориальными данными:\n", df)
+
+# 14. Продвинутая фильтрация
+# Фильтрация с использованием метода query
+filtered_query_df = df.query('A > 1 and B < 6')
+print("\nDataFrame, отфильтрованный с использованием query (A > 1 и B < 6):\n", filtered_query_df)
+
+# 15. Сводные таблицы
+pivot_df = df.pivot_table(values='C', index='A', columns='B', aggfunc=np.mean)
+print("\nСводная таблица:\n", pivot_df)
+
+# 16. Работа с текстовыми данными
+# Создание текстовых данных
+text_data = pd.Series(['Hello World', 'Pandas is great', 'Python is awesome'])
+
+# Преобразование текста в нижний регистр
+print("\nТекстовые данные в нижнем регистре:\n", text_data.str.lower())
+
+# Разделение строк
+print("\nРазделение строк:\n", text_data.str.split())
+
+# Замена подстрок
+print("\nЗамена 'is' на 'IS':\n", text_data.str.replace('is', 'IS'))
+
+# 17. Работа с индексами
+# Сброс индекса
+reset_index_df = df.reset_index()
+print("\nDataFrame с сброшенным индексом:\n", reset_index_df)
+
+# Установка нового индекса
+set_index_df = df.set_index('A')
+print("\nDataFrame с новым индексом 'A':\n", set_index_df)
+
+# 18. Итерация по DataFrame
+print("\nИтерация по строкам DataFrame:")
+for index, row in df.iterrows():
+    print(f"Индекс: {index}, Значение строки: {row['A']}, {row['B']}, {row['C']}")
+
+# 19. Объединение DataFrame
+df3 = pd.DataFrame({
+    'A': ['A0', 'A1', 'A2'],
+    'B': ['B0', 'B1', 'B2'],
+    'C': ['C0', 'C1', 'C2']
+})
+df4 = pd.DataFrame({
+    'A': ['A3', 'A4', 'A5'],
+    'B': ['B3', 'B4', 'B5'],
+    'C': ['C3', 'C4', 'C5']
+})
+concatenated_df = pd.concat([df3, df4])
+print("\nОбъединенный DataFrame:\n", concatenated_df)
+
+# 20. Обработка строковых данных
+# Разделение строки в столбце
+df['split_column'] = df['Category'].astype(str) + "_suffix"
+print("\nDataFrame со столбцом, объединенным с суффиксом:\n", df)
+
+# Проверка наличия подстроки
+contains_test = df['Category'].str.contains('test')
+print("\nСтроки, содержащие 'test' в столбце 'Category':\n", contains_test)
+
+# 21. Преобразование типов данных
+# Преобразование столбца в тип float
+df['A_float'] = df['A'].astype(float)
+print("\nDataFrame со столбцом 'A', преобразованным в float:\n", df)
+
+# 22. Сортировка данных
+# Сортировка по значениям столбца 'A'
+sorted_df = df.sort_values(by='A', ascending=False)
+print("\nDataFrame, отсортированный по столбцу 'A' по убыванию:\n", sorted_df)
+
+# 23. Удаление дубликатов
+# Добавление дублирующихся данных для примера
+df_with_duplicates = df.append(df.iloc[0])
+print("\nDataFrame с дублирующей строкой:\n", df_with_duplicates)
+
+# Удаление дубликатов
+df_without_duplicates = df_with_duplicates.drop_duplicates()
+print("\nDataFrame без дублирующих строк:\n", df_without_duplicates)
+
+# 24. Изменение формы данных
+# Сведение (pivoting) данных
+pivot_df = df.pivot(index='A', columns='B', values='C')
+print("\nСведенная таблица (pivot):\n", pivot_df)
+
+# Расплавление (melting) данных
+melted_df = df.melt(id_vars=['A'], value_vars=['B', 'C'])
+print("\nРасплавленная таблица (melt):\n", melted_df)
+
+# 25. Вычисление скользящего окна
+# Скользящее среднее
+rolling_mean = df['A'].rolling(window=2).mean()
+print("\nСкользящее среднее для столбца 'A':\n", rolling_mean)
+
+# Скользящее стандартное отклонение
+rolling_std = df['A'].rolling(window=2).std()
+print("\nСкользящее стандартное отклонение для столбца 'A':\n", rolling_std)
+
+# 26. Вычисление процентного изменения
+percent_change = df['A'].pct_change()
+print("\nПроцентное изменение для столбца 'A':\n", percent_change)
+
+# 27. Преобразование иерархических индексов
+# Создание многоуровневого индекса
+arrays = [
+    ['A', 'A', 'B', 'B'],
+    ['one', 'two', 'one', 'two']
+]
+index = pd.MultiIndex.from_arrays(arrays, names=('first', 'second'))
+multi_df = pd.DataFrame({'value': [1, 2, 3, 4]}, index=index)
+print("\nDataFrame с многоуровневым индексом:\n", multi_df)
+
+# Преобразование многоуровневого индекса в столбцы
+reset_multi_df = multi_df.reset_index()
+print("\nDataFrame с преобразованным многоуровневым индексом в столбцы:\n", reset_multi_df)
+
+# 28. Работа с временными интервалами
+# Создание данных с временными метками
+time_rng = pd.date_range(start='2020-01-01', periods=100, freq='D')
+time_series = pd.Series(np.random.randn(len(time_rng)), index=time_rng)
+print("\nВременной ряд:\n", time_series)
+
+# Выбор данных по дате
+date_selection = time_series['2020-01-10':'2020-01-20']
+print("\nВыбор данных с 2020-01-10 по 2020-01-20:\n", date_selection)
+
+# 29. Удаление и заполнение пропущенных данных
+# Создание данных с пропущенными значениями
+nan_data = {
+    'A': [1, 2, np.nan, 4],
+    'B': [np.nan, 2, 3, 4],
+    'C': [1, 2, 3, np.nan]
+}
+nan_df = pd.DataFrame(nan_data)
+print("\nDataFrame с пропущенными данными:\n", nan_df)
+
+# Заполнение пропущенных значений
+nan_df_filled = nan_df.fillna(method='ffill')
+print("\nDataFrame с заполненными пропущенными данными методом 'ffill':\n", nan_df_filled)
+
+# Удаление строк с пропущенными значениями
+nan_df_dropped = nan_df.dropna()
+print("\nDataFrame с удаленными строками с пропущенными данными:\n", nan_df_dropped)
+
+# 30. Векторизированные операции
+# Арифметические операции
+df['A_plus_B'] = df['A'] + df['B']
+print("\nDataFrame со столбцом 'A + B':\n", df)
+
+# 31. Применение пользовательских функций
+# Применение функции к каждой строке DataFrame
+def custom_function(row):
+    return row['A'] * 2 + row['B']
+
+df['Custom'] = df.apply(custom_function, axis=1)
+print("\nDataFrame с пользовательской функцией 'A * 2 + B':\n", df)
+
+# 32. Обработка больших данных
+# Чтение больших файлов с использованием iterator и chunksize
+# chunk_iter = pd.read_csv('large_data.csv', iterator=True, chunksize=1000)
+# for chunk in chunk_iter:
+#     process(chunk)
+
+# 33. Визуализация данных
+# Построение диаграммы рассеяния
+df.plot(kind='scatter', x='A', y='B')
+plt.title('Диаграмма рассеяния A и B')
+plt.xlabel('A')
+plt.ylabel('B')
+plt.show()
+
+# Построение круговой диаграммы
+df['A'].plot(kind='pie', autopct='%1.1f%%')
+plt.title('Круговая диаграмма столбца A')
+plt.show()
+
+# 35. Заключение
+"""
+Этот файл охватывает еще больше возможностей библиотеки Pandas. Вы узнали о работе с временными рядами, текстовыми данными, пропущенными значениями, многоуровневыми индексами и о многих других функциях. Pandas является мощным инструментом для анализа данных, и его возможности продолжают расширяться. Для более глубокого изучения, обязательно ознакомьтесь с официальной документацией и другими ресурсами.
+"""
