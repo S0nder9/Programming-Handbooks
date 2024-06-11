@@ -1,0 +1,73 @@
+// Глава 11: HTTP запросы
+
+// Использование useEffect для запросов
+// Хук useEffect позволяет выполнять побочные эффекты в функциональных компонентах React. 
+// Он идеально подходит для выполнения HTTP запросов, поскольку запросы являются побочными эффектами, 
+// которые мы хотим выполнять при монтировании компонента или при изменении зависимостей.
+
+// Основные аспекты использования useEffect для запросов:
+// 1. useEffect принимает функцию, которая содержит логику запроса.
+// 2. Внутри функции useEffect можно использовать async/await для выполнения запросов.
+// 3. Зависимости в useEffect позволяют контролировать, когда именно должен выполняться запрос.
+
+// Пример использования useEffect для выполнения HTTP запроса:
+import React, { useState, useEffect } from 'react';
+
+function DataFetchingComponent() {
+  const [data, setData] = useState(null); // состояние для хранения данных
+  const [loading, setLoading] = useState(true); // состояние для отслеживания загрузки
+  const [error, setError] = useState(null); // состояние для хранения ошибки
+
+  useEffect(() => {
+    // Функция для выполнения HTTP запроса
+    const fetchData = async () => {
+      try {
+        const response = await fetch('https://api.example.com/data'); // выполняем запрос
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const result = await response.json(); // парсим ответ как JSON
+        setData(result); // сохраняем данные в состояние
+        setLoading(false); // устанавливаем состояние загрузки в false
+      } catch (error) {
+        setError(error); // сохраняем ошибку в состояние
+        setLoading(false); // устанавливаем состояние загрузки в false
+      }
+    };
+
+    fetchData(); // вызываем функцию для загрузки данных
+  }, []); // пустой массив зависимостей, чтобы useEffect сработал только при монтировании компонента
+
+  if (loading) {
+    return <div>Загрузка...</div>; // отображаем индикатор загрузки
+  }
+
+  if (error) {
+    return <div>Ошибка: {error.message}</div>; // отображаем сообщение об ошибке
+  }
+
+  return (
+    <div>
+      {/* Отображаем данные */}
+      <h1>Данные:</h1>
+      <pre>{JSON.stringify(data, null, 2)}</pre>
+    </div>
+  );
+}
+
+// Пример использования DataFetchingComponent в другом компоненте
+function App() {
+  return (
+    <div>
+      <h1>Пример HTTP запросов в React</h1>
+      <DataFetchingComponent />
+    </div>
+  );
+}
+
+export default App;
+
+// Итог:
+// Хук useEffect является мощным инструментом для выполнения HTTP запросов в функциональных компонентах React.
+// Он позволяет легко управлять жизненным циклом запроса, обеспечивая загрузку данных при монтировании компонента 
+// и обновление данных при изменении зависимостей.
