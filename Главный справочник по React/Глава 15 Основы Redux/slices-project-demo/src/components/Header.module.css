@@ -1,0 +1,48 @@
+.header {
+  width: 100%;
+  height: 5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #09473f;
+  color: white;
+  text-transform: uppercase;
+  padding: 0 5%;
+}
+
+.header ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+
+.header li {
+  margin: 0 2rem;
+}
+
+.header a {
+  text-decoration: none;
+  color: white;
+  font-size: 1.2rem;
+}
+
+.header a:hover,
+.header a:active {
+  color: #54dff2;
+}
+
+.header button {
+  font-size: 1.25rem;
+  background-color: #54dff2;
+  border: 1px solid #54dff2;
+  padding: 0.5rem 1.5rem;
+  color: black;
+}
+
+.header button:hover,
+.header button:active {
+  background-color: #a8ebf4;
+  border-color: #a8ebf4;
+}
