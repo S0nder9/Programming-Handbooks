@@ -1,14 +1,13 @@
-import { configureStore } from "@reduxjs/toolkit"; 
-import counterSlice from "./counterSlice";
-import userAuthSlice from "./authSlice";
+import { configureStore } from "@reduxjs/toolkit";
+import mainSlice from "./main-slice";
+import cartSlice from "./cart-slice";
 
 const store = configureStore({
-  reducer: {
+    reducer: {
+        main: mainSlice.reducer,
+        cart: cartSlice.reducer
 
-    counter: counterSlice.reducer,
-    auth: userAuthSlice.reducer,
-
-  }
-});
+    }
+})
 
 export default store;

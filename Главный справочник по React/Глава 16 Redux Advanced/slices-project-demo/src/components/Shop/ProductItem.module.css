@@ -1,0 +1,24 @@
+.item h3 {
+  margin: 1rem 0;
+  font-size: 1.3rem;
+}
+
+.item header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.price {
+  padding: 0.2rem 1.5rem;
+  font-size: 1.5rem;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.actions button {
+  margin-top: 1rem;
+}
