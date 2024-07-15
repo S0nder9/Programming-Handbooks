@@ -1,0 +1,133 @@
+// Глава 10: Интерактивные приложения на Canvas
+
+// Подглава 10.2: Интерактивные визуализации
+
+// Canvas API предоставляет возможность создавать динамические и интерактивные визуализации данных.
+// В этой подглаве мы рассмотрим, как создавать визуализации данных с помощью Canvas, а также примеры интерактивных графиков и диаграмм.
+
+// Создание визуализаций данных:
+// Для работы с Canvas API нам потребуется элемент <canvas> в HTML и его контекст рисования в JavaScript.
+// Ниже приведен пример создания визуализации данных на Canvas.
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Интерактивные визуализации на Canvas</title>
+</head>
+<body>
+  <canvas id="myCanvas" width="600" height="400" style="border:1px solid #000000;"></canvas>
+
+  <script>
+    const canvas = document.getElementById('myCanvas');
+    const ctx = canvas.getContext('2d');
+
+    // Пример данных для визуализации
+    const data = [10, 20, 30, 40, 50];
+
+    // Функция для отрисовки данных в виде столбчатой диаграммы
+    function drawBarChart(data) {
+      const barWidth = 40;
+      const barGap = 10;
+      const maxHeight = Math.max(...data);
+
+      data.forEach((value, index) => {
+        const barHeight = (value / maxHeight) * canvas.height;
+        const x = index * (barWidth + barGap);
+        const y = canvas.height - barHeight;
+
+        ctx.fillStyle = 'blue';
+        ctx.fillRect(x, y, barWidth, barHeight);
+      });
+    }
+
+    drawBarChart(data);
+  </script>
+</body>
+</html>
+
+// Примеры интерактивных графиков и диаграмм:
+// Интерактивные графики позволяют пользователям взаимодействовать с данными, например, путем наведения курсора или кликов.
+// Рассмотрим пример интерактивной круговой диаграммы.
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Интерактивная круговая диаграмма</title>
+</head>
+<body>
+  <canvas id="pieChart" width="600" height="400" style="border:1px solid #000000;"></canvas>
+
+  <script>
+    const pieCanvas = document.getElementById('pieChart');
+    const pieCtx = pieCanvas.getContext('2d');
+
+    const pieData = [
+      { value: 30, color: 'red' },
+      { value: 70, color: 'green' },
+      { value: 50, color: 'blue' },
+    ];
+
+    function drawPieChart(data) {
+      const totalValue = data.reduce((sum, item) => sum + item.value, 0);
+      let startAngle = 0;
+
+      data.forEach(item => {
+        const sliceAngle = (item.value / totalValue) * 2 * Math.PI;
+
+        pieCtx.beginPath();
+        pieCtx.moveTo(pieCanvas.width / 2, pieCanvas.height / 2);
+        pieCtx.arc(pieCanvas.width / 2, pieCanvas.height / 2, Math.min(pieCanvas.width / 2, pieCanvas.height / 2), startAngle, startAngle + sliceAngle);
+        pieCtx.closePath();
+        pieCtx.fillStyle = item.color;
+        pieCtx.fill();
+
+        startAngle += sliceAngle;
+      });
+    }
+
+    function isPointInPieSlice(x, y, startAngle, endAngle, radius) {
+      const dx = x - pieCanvas.width / 2;
+      const dy = y - pieCanvas.height / 2;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+      const angle = Math.atan2(dy, dx);
+
+      return distance <= radius && angle >= startAngle && angle <= endAngle;
+    }
+
+    pieCanvas.addEventListener('mousemove', (event) => {
+      const mouseX = event.offsetX;
+      const mouseY = event.offsetY;
+      const radius = Math.min(pieCanvas.width / 2, pieCanvas.height / 2);
+      let startAngle = 0;
+
+      pieData.forEach(item => {
+        const sliceAngle = (item.value / pieData.reduce((sum, item) => sum + item.value, 0)) * 2 * Math.PI;
+        const endAngle = startAngle + sliceAngle;
+
+        if (isPointInPieSlice(mouseX, mouseY, startAngle, endAngle, radius)) {
+          pieCanvas.style.cursor = 'pointer';
+          pieCtx.fillStyle = 'yellow';
+          pieCtx.beginPath();
+          pieCtx.moveTo(pieCanvas.width / 2, pieCanvas.height / 2);
+          pieCtx.arc(pieCanvas.width / 2, pieCanvas.height / 2, radius, startAngle, endAngle);
+          pieCtx.closePath();
+          pieCtx.fill();
+        } else {
+          pieCanvas.style.cursor = 'default';
+        }
+
+        startAngle = endAngle;
+      });
+
+      drawPieChart(pieData);
+    });
+
+    drawPieChart(pieData);
+  </script>
+</body>
+</html>
+
+// Итог:
+// Canvas API предоставляет мощные возможности для создания интерактивных визуализаций данных.
+// С помощью Canvas и JavaScript можно создавать различные графики и диаграммы, которые позволяют пользователям взаимодействовать с данными.
+// Интерактивные визуализации могут значительно улучшить пользовательский опыт, делая данные более доступными и понятными.
