@@ -1,4 +1,4 @@
-import { EventEmitter } from "events";
+import EventEmitter from "events";
 import fs from "fs";
 
 const fileEmitter = new EventEmitter();
