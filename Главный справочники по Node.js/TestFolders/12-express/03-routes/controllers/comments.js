@@ -1,7 +1,3 @@
-const getRootHandler = (req, res) => {
-    res.send("firstHandler");
-};
-
 const getCommentsHandler = (req, res) => {
     res.send("GetComments");
 };
@@ -14,18 +10,6 @@ const deleteCommentHandler = (req, res) => {
     res.send("Comment deleted");
 };
 
-const getUsersHandler = (req, res) => {
-    res.send("getUsersHandler");
-};
-
-const postUsersHandler = (req, res) => {
-    res.send("postUsersHandler");
-};
-
-const getSingleUsersHandler = (req, res) => {
-    res.send("getSingleUsersHandler");
-};
-
 const getCommentHandler = (req, res) => {
     console.log(req.params);
     console.log(req.params.commentId);
@@ -33,12 +17,8 @@ const getCommentHandler = (req, res) => {
 };
 
 module.exports = {
-    getRootHandler, 
-    getCommentsHandler, 
-    postCommentsHandler, 
-    getCommentHandler, 
-    deleteCommentHandler, 
-    getUsersHandler, 
-    postUsersHandler, 
-    getSingleUsersHandler
+    getCommentsHandler,
+    postCommentsHandler,
+    getCommentHandler,
+    deleteCommentHandler,
 };
