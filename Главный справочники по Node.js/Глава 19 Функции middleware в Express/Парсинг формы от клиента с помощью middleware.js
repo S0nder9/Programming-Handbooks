@@ -23,7 +23,7 @@ const port = 3000;
 // Использование body-parser middleware для парсинга application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// Обработка POST-запроса с данными формы
+// Обработка POST-запроса с данными формы 
 app.post('/submit-form', (req, res) => {
   const formData = req.body; // Данные формы будут доступны в req.body
   console.log('Форма отправлена:', formData);
