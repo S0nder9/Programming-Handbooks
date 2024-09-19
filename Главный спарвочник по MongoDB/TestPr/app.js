@@ -11,6 +11,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 app.post("/tours", tourController.createTour); 
+app.get("/api/v1/tours", tourController.getAllTours); 
+app.get("/api/v1/tours/:id", tourController.getTour);
+app.patch("/api/v1/tours/:id", tourController.updateTour);
+app.delete("/api/v1/tours/:id", tourController.deleteTour);
 
 app.get("/", (req, res) => {
     res.send("Hi!");

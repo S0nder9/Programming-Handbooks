@@ -16,6 +16,7 @@
     "express": "^4.21.0",
     "mongoose": "^5.13.22",
     "morgan": "^1.10.0",
-    "nodemon": "^3.1.4"
+    "nodemon": "^3.1.4",
+    "testpr": "file:"
   }
 }
