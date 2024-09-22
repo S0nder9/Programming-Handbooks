@@ -24,9 +24,9 @@ function TelegramForm() {
     setStatus('Отправка...');
 
     // Токен вашего бота
-    const botToken = '7442718434:AAGyH4vpMGhtYcmMkQJA506EnH6KpM0A6zY';
+    const botToken = '';
     // ID чата, куда будут отправляться сообщения (может быть ID группы или личного чата)
-    const chatId = 'https://t.me/S0nder9';
+    const chatId = 'https://t.me/';
 
     // Сообщение, которое будет отправлено в Telegram
     const text = `Имя: ${name}\nСообщение: ${message}`;
