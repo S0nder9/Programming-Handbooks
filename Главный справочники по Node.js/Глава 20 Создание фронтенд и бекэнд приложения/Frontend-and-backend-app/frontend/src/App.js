@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import "./App.css";
 
 function App() {
-    // Используйте массив деструктуризации для инициализации состояния
     const [person, setPerson] = useState({});
 
     useEffect(() => {

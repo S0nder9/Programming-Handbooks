@@ -10,6 +10,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "11-env": "file:",
     "dotenv": "^16.4.5"
   }
 }
