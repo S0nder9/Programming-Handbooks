@@ -5,6 +5,7 @@ const tourController = require("../controllers/tourController");
 const router = express.Router();
 
 router.get("/tour-stats", tourController.getTourStats);
+router.get("/monthly-plan/:year", tourController.getMonthlyPlay);
 
 router.route("/")
     .get(tourController.getAllTours)
