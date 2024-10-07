@@ -1,23 +1,26 @@
 {
-  "name": "testpr",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "start": "nodemon server.js",
-    "start:prod": "NODE_ENV=production nodemon server.js"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
-  "dependencies": {
-    "cors": "^2.8.5",
-    "dotenv": "^16.4.5",
-    "express": "^4.21.0",
-    "mongoose": "^5.13.22",
-    "morgan": "^1.10.0",
-    "nodemon": "^3.1.4",
-    "slugify": "^1.6.6",
-    "testpr": "file:"
-  }
+    "name": "testpr",
+    "version": "1.0.0",
+    "main": "index.js",
+    "scripts": {
+        "start": "nodemon server.js",
+        "start:prod": "NODE_ENV=production nodemon server.js",
+        "debug": "ndb server.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "description": "",
+    "dependencies": {
+        "cors": "^2.8.5",
+        "dotenv": "^16.4.5",
+        "express": "^4.21.0",
+        "mongoose": "^5.13.22",
+        "morgan": "^1.10.0",
+        "ndb": "^1.1.5",
+        "nodemon": "^3.1.4",
+        "slugify": "^1.6.6",
+        "testpr": "file:",
+        "validator": "^13.12.0"
+    }
 }

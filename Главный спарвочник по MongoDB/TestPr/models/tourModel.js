@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const slugify = require("slugify");
+const validtor = require("validator");
 
 const tourSchema = new mongoose.Schema(
     {
@@ -8,6 +9,14 @@ const tourSchema = new mongoose.Schema(
             required: [true, "A tour must have a name!"],
             unique: true,
             trim: true,
+            maxlenght: [
+                40,
+                "A tour name mush have less or equal then 40 characters!",
+            ],
+            minlenght: [
+                10,
+                "A tour name mush have less or equal then 40 characters!",
+            ],
         },
         slug: String,
         duration: {
@@ -21,10 +30,16 @@ const tourSchema = new mongoose.Schema(
         difficulty: {
             type: String,
             required: [true, "A tour must have a difficulty!"],
+            enum: {
+                values: ["easy", "medium", "difficult"],    
+                message: "Difficulty is either: easy, medium, difficult!",
+            },
         },
         raitingsAverage: {
             type: Number,
             default: 0,
+            min: [1, "Raitings mush be above 1.0"],
+            max: [5, "Raitings mush be below 5.0"],
         },
         raitingsQuantity: {
             type: Number,
@@ -40,6 +55,13 @@ const tourSchema = new mongoose.Schema(
         },
         priceDiscount: {
             type: Number,
+            validate: {
+                message:
+                    "Discaunt price ({VALUE}) should be below regular price!",
+                validator: function (val) {
+                    return val < this.price;
+                },
+            },
         },
         summary: {
             type: String,
@@ -62,6 +84,10 @@ const tourSchema = new mongoose.Schema(
             select: false,
         },
         startDates: [Date],
+        secretTour: {
+            type: Boolean,
+            default: false,
+        },
     },
     {
         toJSON: { virtuals: true },
@@ -87,6 +113,26 @@ tourSchema.pre("save", function (next) {
 // tourSchema.virtual("durationWeeks").get(function () {
 //     return this.duration / 7;
 // });
+
+tourSchema.pre(/^find/, function (next) {
+    this.find({ secretTour: { $ne: true } });
+    this.start = Date.now();
+    next();
+});
+
+tourSchema.post(/^find/, function (docs, next) {
+    console.log(`Query took ${Date.now() - this.start} milliseconds!`);
+
+    next();
+});
+
+tourSchema.pre("aggregate", function (next) {
+    console.log(this.pipeline());
+
+    this.pipeline().unshift({ $match: { secretTour: { $ne: true } } });
+
+    next();
+});
 
 const Tour = mongoose.model("Tour", tourSchema);
 
