@@ -1,8 +1,10 @@
 const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
+const AppError = require("./utils/appError.js");
 
 const tourRoutes = require("./routes/tourRoutes");
+const globalErrorHandler = require("./controllers/errorController.js");
 
 const app = express();
 
@@ -19,10 +21,9 @@ app.get("/", (req, res) => {
 });
 
 app.all("*", (req, res, next) => {
-    res.status(404).json({
-        satus: "fail",
-        message: `Can't find ${req.originalUrl} on this server!`,
-    });
+    next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
 });
+
+app.use(globalErrorHandler);
 
 module.exports = app;
