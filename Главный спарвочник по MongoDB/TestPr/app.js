@@ -3,8 +3,9 @@ const morgan = require("morgan");
 const cors = require("cors");
 const AppError = require("./utils/appError.js");
 
-const tourRoutes = require("./routes/tourRoutes");
 const globalErrorHandler = require("./controllers/errorController.js");
+const userRouter = require("./routes/userRoutes.js");
+const tourRoutes = require("./routes/tourRoutes.js");
 
 const app = express();
 
@@ -15,6 +16,7 @@ app.use(cors());
 app.use(express.static(`${__dirname}/public`));
 
 app.use("/api/v1/tours", tourRoutes);
+app.use("/api/v1/tours", userRouter);
 
 app.get("/", (req, res) => {
     res.send("Hi!");

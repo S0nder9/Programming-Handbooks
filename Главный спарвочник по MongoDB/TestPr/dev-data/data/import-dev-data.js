@@ -25,7 +25,7 @@ const tours = JSON.parse(
 const importData = async () => {
     try {
         await Tour.create(tours);
-        console.log("Dara successfu;;y loaded!");
+        console.log("Dara successful loaded!");
         process.exit();
     } catch (err) {
         console.log(err);
