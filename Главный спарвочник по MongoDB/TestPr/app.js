@@ -15,8 +15,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use(express.static(`${__dirname}/public`));
 
+app.use((req, res, next) => {
+    req.requestTime = new Date().toISOString();
+    next();
+});
+
 app.use("/api/v1/tours", tourRoutes);
-app.use("/api/v1/tours", userRouter);
+app.use("/api/v1/users", userRouter);
 
 app.get("/", (req, res) => {
     res.send("Hi!");
