@@ -1,0 +1,38 @@
+{
+    "name": "Explore the Majestic Alps",
+    "slug": "explore-the-majestic-alps",
+    "duration": 7,
+    "maxGroupSize": 10,
+    "difficulty": "medium",
+    "raitingsAverage": 4.7,
+    "raitingsQuantity": 100,
+    "price": 1500,
+    "priceDiscount": 1200,
+    "summary": "An unforgettable 7-day adventure through the Alps.",
+    "description": "Enjoy breathtaking views, guided hikes, and experience alpine culture.",
+    "imageCover": "alps-cover.jpg",
+    "images": ["alps1.jpg", "alps2.jpg"],
+    "startDates": ["2023-06-15", "2023-07-01", "2023-08-15"],
+    "startLocation": {
+        "type": "Point",
+        "coordinates": [10.3414, 46.8894],
+        "address": "Alps, Switzerland",
+        "description": "Main meeting point in the Swiss Alps."
+    },
+    "locations": [
+        {
+            "type": "Point",
+            "coordinates": [10.3414, 46.8894],
+            "address": "Start of the trail",
+            "description": "The starting point of our alpine journey.",
+            "day": 1
+        },
+        {
+            "type": "Point",
+            "coordinates": [10.4624, 46.7689],
+            "address": "Mountain Camp",
+            "description": "Overnight in a mountain camp with a view.",
+            "day": 3
+        }
+    ]
+}

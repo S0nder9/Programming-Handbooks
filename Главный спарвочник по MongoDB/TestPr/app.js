@@ -42,7 +42,6 @@ app.use(
     })
 );
 
-console.log(process.env.WHITELIST_FOR_SEARCH.split(","));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
