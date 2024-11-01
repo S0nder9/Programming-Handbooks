@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const slugify = require("slugify");
-const User = require("./userModal");
 // const validtor = require("validator");
 
 const tourSchema = new mongoose.Schema(
@@ -10,14 +9,8 @@ const tourSchema = new mongoose.Schema(
             required: [true, "A tour must have a name!"],
             unique: true,
             trim: true,
-            maxlenght: [
-                40,
-                "A tour name mush have less or equal then 40 characters!",
-            ],
-            minlenght: [
-                10,
-                "A tour name mush have less or equal then 40 characters!",
-            ],
+            maxlength: [40, "A tour name must have less or equal to 40 characters!"],
+            minlength: [10, "A tour name must have more or equal to 10 characters!"],
         },
         slug: String,
         duration: {
@@ -36,19 +29,15 @@ const tourSchema = new mongoose.Schema(
                 message: "Difficulty is either: easy, medium, difficult!",
             },
         },
-        raitingsAverage: {
+        ratingAverage: {
             type: Number,
             default: 0,
-            min: [1, "Raitings mush be above 1.0"],
-            max: [5, "Raitings mush be below 5.0"],
+            min: [1, "Rating must be above 1.0"],
+            max: [5, "Rating must be below 5.0"],
         },
-        raitingsQuantity: {
+        ratingQuantity: {
             type: Number,
             default: 0,
-        },
-        rating: {
-            type: Number,
-            default: 4.5,
         },
         price: {
             type: Number,
@@ -57,11 +46,11 @@ const tourSchema = new mongoose.Schema(
         priceDiscount: {
             type: Number,
             validate: {
-                message:
-                    "Discaunt price ({VALUE}) should be below regular price!",
                 validator: function (val) {
-                    return val < this.price;
+                    // `this` only points to the current doc on NEW document creation
+                    return this.isNew || val < this.price;
                 },
+                message: "Discount price ({VALUE}) should be below regular price!",
             },
         },
         summary: {
@@ -109,32 +98,32 @@ const tourSchema = new mongoose.Schema(
                 coordinates: [Number],
                 address: String,
                 description: String,
-                day: Number
+                day: Number,
             },
         ],
-        guides: Array
+        guides: [{ type: mongoose.Schema.ObjectId, ref: "User" }],
     },
-
     {
         toJSON: { virtuals: true },
         toObject: { virtuals: true },
     }
 );
 
+
 tourSchema.pre("save", function (next) {
     this.slug = slugify(this.name, { lower: true });
     next();
 });
 
-tourSchema.pre("save", async function (next) {
-    const guidesPromises = this.guides.map(async id => {
-        return await User.findById(id);
-    });
-    
-   this.guides = await Promise.all(guidesPromises)
-    
-    next();
-})
+// tourSchema.pre("save", async function (next) {
+//     const guidesPromises = this.guides.map(async (id) => {
+//         return await User.findById(id);
+//     });
+
+//     this.guides = await Promise.all(guidesPromises);
+
+//     next();
+// });
 
 // tourSchema.post("save", function (doc, next) {
 //     console.log(doc);
@@ -149,6 +138,15 @@ tourSchema.pre("save", async function (next) {
 // tourSchema.virtual("durationWeeks").get(function () {
 //     return this.duration / 7;
 // });
+
+tourSchema.pre(/^find/, function (next) {
+    this.populate({
+        path: "guides",
+        select: "-__v -passwordChangedAt",
+    });
+
+    next();
+});
 
 tourSchema.pre(/^find/, function (next) {
     this.find({ secretTour: { $ne: true } });

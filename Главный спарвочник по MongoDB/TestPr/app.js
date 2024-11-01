@@ -11,6 +11,7 @@ const hpp = require("hpp");
 const globalErrorHandler = require("./controllers/errorController.js");
 const userRouter = require("./routes/userRoutes.js");
 const tourRoutes = require("./routes/tourRoutes.js");
+const reviewRouter = require("./routes/reviewRoutes.js");
 
 const app = express();
 
@@ -54,6 +55,7 @@ app.use((req, res, next) => {
 
 app.use("/api/v1/tours", tourRoutes);
 app.use("/api/v1/users", userRouter);
+app.use("/api/v1/reviews", reviewRouter);
 
 app.get("/", (req, res) => {
     res.send("Hi!");
