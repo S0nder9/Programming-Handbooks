@@ -9,6 +9,7 @@ reviewRouter.post(
     "/",
     authController.protect,
     authController.restrictTo("user"),
+    reviewController.setTourUserIds,
     reviewController.createReview
 );
 
@@ -20,5 +21,7 @@ reviewRouter.post(
 );
 
 reviewRouter.delete("/:id", reviewController.deleteReview);
+reviewRouter.patch("/:id", reviewController.updateReview);
+reviewRouter.get("/:id", reviewController.getReview);
 
 module.exports = reviewRouter;

@@ -10,6 +10,10 @@ userRouter.delete(
     authController.restrictTo("admin"),
     userController.deleteUser
 );
+
+userRouter.patch("/:id", authController.protect, userController.updateUser);
+userRouter.get("/:id", userController.getUser);
+
 userRouter.get("/", userController.getAllUsers);
 userRouter.post("/signup", authController.signup);
 userRouter.post("/login", authController.login);
@@ -24,6 +28,5 @@ userRouter.patch(
 
 userRouter.patch("/updateMe", authController.protect, userController.updateMe);
 userRouter.delete("/deleteMe", authController.protect, userController.deleteMe);
-
 
 module.exports = userRouter;
