@@ -6,17 +6,30 @@ const reviewRouter = require("../routes/reviewRoutes");
 const router = express.Router();
 
 router.get("/tour-stats", tourController.getTourStats);
-router.get("/monthly-plan/:year", tourController.getMonthlyPlay);
+router.get(
+    "/monthly-plan/:year",
+    authController.protect,
+    authController.restrictTo("admin", "lead-guide", "guide"),
+    tourController.getMonthlyPlay
+);
 
 router
     .route("/")
-    .get(authController.protect, tourController.getAllTours)
-    .post(tourController.createTour);
+    .get(tourController.getAllTours)
+    .post(
+        authController.protect,
+        authController.restrictTo("admin", "lead-guide"),
+        tourController.createTour
+    );
 
 router
     .route("/:id")
     .get(tourController.getTour)
-    .patch(tourController.updateTour)
+    .patch(
+        authController.protect,
+        authController.restrictTo("admin", "lead-guide"),
+        tourController.updateTour
+    )
     .delete(
         authController.protect,
         authController.restrictTo("admin", "lead-guide"),

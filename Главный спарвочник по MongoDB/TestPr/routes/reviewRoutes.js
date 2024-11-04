@@ -4,24 +4,29 @@ const reviewController = require("../controllers/reviewController");
 
 const reviewRouter = express.Router({ mergeParams: true });
 
-reviewRouter.get("/", reviewController.getAllReviews);
-reviewRouter.post(
-    "/",
-    authController.protect,
-    authController.restrictTo("user"),
-    reviewController.setTourUserIds,
-    reviewController.createReview
-);
+reviewRouter.use(authController.protect);
 
-reviewRouter.post(
-    "/createReview",
-    authController.protect,
-    authController.restrictTo("user"),
-    reviewController.createReview
-);
+reviewRouter
+    .route("/")
+    .get(reviewController.getAllReviews)
+    .post(
+        authController.restrictTo("user"),
+        reviewController.setTourUserIds,
+        reviewController.createReview
+    );
 
-reviewRouter.delete("/:id", reviewController.deleteReview);
-reviewRouter.patch("/:id", reviewController.updateReview);
-reviewRouter.get("/:id", reviewController.getReview);
+reviewRouter.post("/createReview", reviewController.createReview);
+
+reviewRouter
+    .route("/id")
+    .get(reviewController.getReview)
+    .delete(
+        authController.restrictTo("user", "admin"),
+        reviewController.deleteReview
+    )
+    .patch(
+        authController.restrictTo("user", "admin"),
+        reviewController.updateReview
+    );
 
 module.exports = reviewRouter;

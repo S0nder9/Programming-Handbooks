@@ -11,16 +11,6 @@ exports.aliasTopTour = (req, res, next) => {
     next();
 };
 
-exports.getAllTours = factory.getAll(Tour);
-
-exports.createTour = factory.createOne(Tour);
-
-exports.getTour = factory.getOne(Tour, { path: "reviews" });
-
-exports.updateTour = factory.updateOne(Tour);
-
-exports.deleteTour = factory.deleteOne(Tour);
-
 exports.getTourStats = catchAsync(async (req, res, next) => {
     const stats = await Tour.aggregate([
         {
@@ -94,3 +84,15 @@ exports.getMonthlyPlay = catchAsync(async (req, res, next) => {
         },
     });
 });
+
+
+exports.getAllTours = factory.getAll(Tour);
+
+exports.createTour = factory.createOne(Tour);
+
+exports.getTour = factory.getOne(Tour, { path: "reviews" });
+
+exports.updateTour = factory.updateOne(Tour);
+
+exports.deleteTour = factory.deleteOne(Tour);
+

@@ -1,0 +1,62 @@
+[
+    {
+        "name": "SeaEscape26",
+        "price": 399,
+        "rating": 4.8,
+        "ratingAverage": 4.8,
+        "imageCover": "sea-escape-cover.jpg",
+        "summary": "A relaxing 5-day journey along the coast.",
+        "difficulty": "easy",
+        "maxGroupSize": 20,
+        "duration": 5,
+        "raitingsAverage": 4.8
+    },
+    {
+        "name": "JungleExpedition15",
+        "price": 699,
+        "rating": 4.6,
+        "ratingAverage": 4.6,
+        "imageCover": "jungle-expedition-cover.jpg",
+        "summary": "A thrilling 10-day jungle expedition.",
+        "difficulty": "easy",
+        "maxGroupSize": 12,
+        "duration": 10,
+        "raitingsAverage": 4.6
+    },
+    {
+        "name": "DesertDiscovery30",
+        "price": 520,
+        "rating": 4.5,
+        "ratingAverage": 4.5,
+        "imageCover": "desert-discovery-cover.jpg",
+        "summary": "An adventurous 7-day desert exploration.",
+        "difficulty": "medium",
+        "maxGroupSize": 10,
+        "duration": 7,
+        "raitingsAverage": 4.5
+    },
+    {
+        "name": "MountainClimb50",
+        "price": 850,
+        "rating": 4.9,
+        "ratingAverage": 4.9,
+        "imageCover": "mountain-climb-cover.jpg",
+        "summary": "A challenging 12-day climb through scenic mountains.",
+        "difficulty": "easy",
+        "maxGroupSize": 8,
+        "duration": 12,
+        "raitingsAverage": 4.9
+    },
+    {
+        "name": "IslandRetreat80",
+        "price": 450,
+        "rating": 4.7,
+        "ratingAverage": 4.7,
+        "imageCover": "island-retreat-cover.jpg",
+        "summary": "A peaceful 6-day island retreat for relaxation.",
+        "difficulty": "easy",
+        "maxGroupSize": 25,
+        "duration": 6,
+        "raitingsAverage": 4.7
+    }
+]
