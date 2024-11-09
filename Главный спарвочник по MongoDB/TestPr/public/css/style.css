@@ -1,0 +1,402 @@
+/* Сброс общих стилей браузера */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Базовые стили */
+body {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  color: #333;
+  background-color: #f7f7f7;
+  line-height: 1.6;
+  padding: 20px;
+}
+
+/* Структура контейнеров */
+header,
+footer {
+  background-color: #004f6e;
+  color: #ffffff;
+  text-align: center;
+  padding: 20px;
+}
+
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Стили заголовков */
+h1, h2, h3, h4, h5, h6 {
+  color: #004f6e;
+  margin-bottom: 10px;
+}
+
+h1 {
+  font-size: 2.5em;
+}
+
+h2 {
+  font-size: 2em;
+}
+
+h3 {
+  font-size: 1.75em;
+}
+
+/* Стиль для параграфов */
+p {
+  margin-bottom: 15px;
+  line-height: 1.8;
+}
+
+/* Стили для изображений */
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* Кнопки */
+button {
+  background-color: #007b8f;
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #005f6e;
+}
+
+/* Ссылки */
+a {
+  color: #007b8f;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+a:hover {
+  color: #005f6e;
+}
+
+/* Стили для списков */
+ul, ol {
+  margin: 15px 0;
+  padding-left: 20px;
+}
+
+li {
+  margin-bottom: 10px;
+}
+
+/* Карточки туров */
+article {
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s;
+}
+
+article:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Сетки */
+section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+/* Поля ввода */
+input, textarea, select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  font-size: 1em;
+}
+
+/* Таблицы */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+th, td {
+  padding: 10px;
+  border: 1px solid #dddddd;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+/* Мобильная адаптация */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2em;
+  }
+
+  h2 {
+    font-size: 1.75em;
+  }
+
+  h3 {
+    font-size: 1.5em;
+  }
+
+  section {
+    grid-template-columns: 1fr;
+  }
+}
+/* Анимации и переходы */
+* {
+    transition: all 0.2s ease-in-out;
+  }
+  
+  /* Основной контейнер приложения */
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* Панель навигации */
+  nav {
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  nav a {
+    color: #333;
+    font-weight: bold;
+    padding: 10px 15px;
+    border-radius: 5px;
+  }
+  
+  nav a:hover {
+    background-color: #e6f7ff;
+  }
+  
+  /* Блок с информацией о туре */
+  .tour-info {
+    background: linear-gradient(135deg, #004f6e, #007b8f);
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+  }
+  
+  .tour-info h2 {
+    font-size: 2em;
+    color: #f1f1f1;
+  }
+  
+  /* Отзывы */
+  .review {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border: 1px solid #eeeeee;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+  
+  .review p {
+    font-style: italic;
+    color: #555555;
+  }
+  
+  .review::before {
+    content: "★";
+    color: #ffc107;
+    font-size: 1.5em;
+    margin-right: 5px;
+  }
+  
+  /* Модальное окно */
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .modal-content {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .modal.active {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  .modal-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    cursor: pointer;
+  }
+  
+  /* Всплывающие подсказки */
+  .tooltip {
+    position: relative;
+    cursor: pointer;
+  }
+  
+  .tooltip::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s;
+    font-size: 0.9em;
+  }
+  
+  .tooltip:hover::before {
+    opacity: 1;
+    visibility: visible;
+    top: -30px;
+  }
+  
+  /* Блок кнопок социальных сетей */
+  .social-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+  }
+  
+  .social-buttons a {
+    background-color: #007b8f;
+    color: #ffffff;
+    padding: 10px;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2em;
+  }
+  
+  .social-buttons a:hover {
+    background-color: #005f6e;
+  }
+  
+  /* Подвал */
+  footer p {
+    font-size: 0.9em;
+    color: #888888;
+  }
+  
+  /* Карточки с тенями и плавным масштабированием */
+  .card {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Прелоадер */
+  .preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f7f7f7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+  }
+  
+  .preloader.hidden {
+    visibility: hidden;
+    opacity: 0;
+  }
+  
+  .preloader::after {
+    content: "";
+    width: 40px;
+    height: 40px;
+    border: 4px solid #007b8f;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  /* Плавное появление элементов */
+  .fade-in {
+    opacity: 0;
+    animation: fadeIn 0.6s forwards;
+  }
+  
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
+  }
+  
