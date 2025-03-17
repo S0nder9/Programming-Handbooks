@@ -33,3 +33,12 @@ for (let i of words) {
     isTwo = true;
   }
 }
+
+let numbers2: number[] = [-10, -1, 12];
+let positiveNumber: boolean | number = false;
+
+for (let i of numbers2) {
+  if (i > 0) {
+    positiveNumber = i;
+  }
+}
