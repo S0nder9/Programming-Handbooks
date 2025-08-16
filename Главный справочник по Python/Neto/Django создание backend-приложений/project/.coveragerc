@@ -1,0 +1,3 @@
+[run]
+
+omit=tests/*,.venv/*,manage.py,drf_test/*,*tests.py

@@ -1,0 +1,9 @@
+GET http://localhost:8000/api/posts/
+###
+POST http://localhost:8000/api/posts/1/toggle-favorite/
+Content-Type: application/json
+Authorization: Token ...
+
+{
+    
+}

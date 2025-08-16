@@ -1,0 +1,72 @@
+GET http://localhost:8000/demo/
+
+###
+
+POST http://localhost:8000/demo/
+
+###
+
+GET http://localhost:8000/weapon/3/
+
+################################################
+
+GET http://localhost:8000/demo/
+
+###
+
+POST http://localhost:8000/demo/
+
+################################################################################################################################################################################################################################################################################################
+
+GET http://localhost:8000/comments/?limit=2&offset=4
+###
+ 
+POST http://localhost:8000/comments/
+Content-Type: application/json
+
+{
+    "user": 1,
+    "text": "Hello, ma boy!"
+}
+
+###
+
+GET http://localhost:8000/comments/1/
+###
+
+PATCH  http://localhost:8000/comments/2/
+Content-Type: application/json
+
+{
+    "user": 1,
+    "text": "Hello, ma boy!!"
+}
+
+###
+
+DELETE  http://localhost:8000/comments/2/
+
+###
+
+################################################################################################################################################################################################################################################################################################
+
+GET http://localhost:8000/adv/
+###
+POST http://localhost:8000/adv/
+Content-Type: application/json
+Authorization: Token e19e7efff328a4500739f1276e1b4ac64e085aad
+
+{
+    "text": "Объявление1"
+}
+
+### 
+
+DELETE http://localhost:8000/adv/5/
+Authorization: Token cc74a08c2f97662f5be41290bb6278dd23c265f4
+
+###
+
+GET http://localhost:8000/adv/5
+Content-Type: application/json
+Authorization: Token cc74a08c2f97662f5be41290bb6278dd23c265f4

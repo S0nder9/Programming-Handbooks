@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    {% for e in page %}
+
+    <p>{{e}}</p>
+
+    {% endfor %} {% if page.has_previous %}
+    <a href="?page={{page.previous_page_number}}"> Назад </a>
+    {% endif %} {% if page.has_next %} 
+     <a href="?page={{page.next_page_number}}"> Вперед </a>
+    {% endif %}
+  </body>
+</html>

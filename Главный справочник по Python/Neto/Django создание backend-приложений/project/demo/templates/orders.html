@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <ul>
+      {% for order in orders %}
+        <li>Заказ: {{order.id}}</li>
+        <ul>
+          {% for position in order.positions.all %}
+            <li>
+              {{position.product.name}} - {{position.quantity}}
+            </li>
+          {% endfor %}
+        </ul>
+      {% endfor %}
+    </ul>
+  </body>
+</html>
+

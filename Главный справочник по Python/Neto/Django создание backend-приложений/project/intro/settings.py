@@ -21,11 +21,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-p_6+jmn&c43r9g7o=61(%2g+i$(39u0va&6=8#iwewz47-2m3i'
-
+ADMIN_EMAIL = "admin@gmail.com"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
+INTERNAL_IPS = [
+        '127.0.0.1',
+
+]
 
 
 # Application definition
@@ -37,7 +41,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    "demo"
+    "demo",
+    'debug_toolbar',
+    "rest_framework",
+    'django_filters',
+    "rest_framework.authtoken",
 ]
 
 MIDDLEWARE = [
@@ -48,6 +56,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'intro.urls'
@@ -76,8 +85,10 @@ WSGI_APPLICATION = 'intro.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'demoorm',
+        "USER": "postgres",
+        "PASSWORD": "s8vnRKwj",
     }
 }
 
@@ -122,3 +133,26 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend',
+    ],
+    "SEARCH_PARAM": "q",
+    "ORDERING_PARAM": "o",
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+    "PAGE_SIZE": 3,
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.TokenAuthentication",
+    ],
+    # "DEFAULT_THROTTLE_CLASSES": [
+    #     "rest_framework.throttling.UserRateThrottle",
+    #     "rest_framework.throttling.AnonRateThrottle",
+    # ],
+    "DEFAULT_THROTTLE_RATES": {
+        "user": "10/minute",
+        "anon": "2/minute",
+    },
+
+    "TEST_REQUEST_DEFAULT_FORMAT": "json",
+}
