@@ -1,0 +1,16 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres:14.3-alpine3.15
+    ports:
+      - "5431:5432"  # Хост:5431 -> Контейнер:5432
+    environment:
+      POSTGRES_USER: user      # Соответствует вашему .env
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: netology
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

@@ -1,0 +1,54 @@
+version: "3.9"
+
+volumes:
+  pg_data:
+networks:
+  backend:
+
+services:
+  my_p_app:
+    build: .
+    ports:
+      - "80:5000"
+    volumes:
+      - ./:/code
+    environment:
+      - FLASK_ENV=development
+    # redis:
+    #   image: redis:alpine
+    my_fastapi_app:
+      build: ~/pythonProject/
+      ports:
+        - "8888:5050"
+
+    postgres:
+      image: postgres:alpine
+      env_file:
+        - .env
+      volumes:
+        - .:/docker-entrypoint-initdb.d
+        - ./logs:/var/log
+        - pg_data:/var/lib/postgresql/data
+      depends_on:
+        - postgres
+      healthcheck:
+        test: ["CMD-SHELL", "pg_isready -U admin1 -d new_db"]
+        interval: 1m30s
+        timeout: 30s
+        retries: 5
+        start_period: 30s
+      networks:
+        - backend
+  pg_admin:
+    image: dpage/pgadmin4:latest
+    ports:
+      - "9999:80"
+    env_file:
+      - .pgadmin-env
+    deploy:
+      resources:
+        limits:
+          cpus: "0.1" # 10% of the available CPUs
+          memory: 1G
+    networks:
+      - backend
