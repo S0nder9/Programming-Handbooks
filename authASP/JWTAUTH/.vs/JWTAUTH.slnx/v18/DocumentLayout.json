@@ -1,0 +1,181 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\\Documents\\Github\\Programming-Handbooks\\authASP\\JWTAUTH\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{AA056583-453D-7DF0-DAEC-B720D9138C42}|JWTAUTH\\JWTAUTH.csproj|c:\\users\\\u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\\documents\\github\\programming-handbooks\\authasp\\jwtauth\\jwtauth\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AA056583-453D-7DF0-DAEC-B720D9138C42}|JWTAUTH\\JWTAUTH.csproj|solutionrelative:jwtauth\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AA056583-453D-7DF0-DAEC-B720D9138C42}|JWTAUTH\\JWTAUTH.csproj|c:\\users\\\u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\\documents\\github\\programming-handbooks\\authasp\\jwtauth\\jwtauth\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AA056583-453D-7DF0-DAEC-B720D9138C42}|JWTAUTH\\JWTAUTH.csproj|solutionrelative:jwtauth\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AA056583-453D-7DF0-DAEC-B720D9138C42}|JWTAUTH\\JWTAUTH.csproj|c:\\users\\\u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\\documents\\github\\programming-handbooks\\authasp\\jwtauth\\jwtauth\\services\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AA056583-453D-7DF0-DAEC-B720D9138C42}|JWTAUTH\\JWTAUTH.csproj|solutionrelative:jwtauth\\services\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AA056583-453D-7DF0-DAEC-B720D9138C42}|JWTAUTH\\JWTAUTH.csproj|c:\\users\\\u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\\documents\\github\\programming-handbooks\\authasp\\jwtauth\\jwtauth\\entities\\models\\refreshtokenrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AA056583-453D-7DF0-DAEC-B720D9138C42}|JWTAUTH\\JWTAUTH.csproj|solutionrelative:jwtauth\\entities\\models\\refreshtokenrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AA056583-453D-7DF0-DAEC-B720D9138C42}|JWTAUTH\\JWTAUTH.csproj|c:\\users\\\u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\\documents\\github\\programming-handbooks\\authasp\\jwtauth\\jwtauth\\entities\\models\\tokenresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AA056583-453D-7DF0-DAEC-B720D9138C42}|JWTAUTH\\JWTAUTH.csproj|solutionrelative:jwtauth\\entities\\models\\tokenresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AA056583-453D-7DF0-DAEC-B720D9138C42}|JWTAUTH\\JWTAUTH.csproj|c:\\users\\\u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\\documents\\github\\programming-handbooks\\authasp\\jwtauth\\jwtauth\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AA056583-453D-7DF0-DAEC-B720D9138C42}|JWTAUTH\\JWTAUTH.csproj|solutionrelative:jwtauth\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AA056583-453D-7DF0-DAEC-B720D9138C42}|JWTAUTH\\JWTAUTH.csproj|c:\\users\\\u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\\documents\\github\\programming-handbooks\\authasp\\jwtauth\\jwtauth\\entities\\data\\userdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AA056583-453D-7DF0-DAEC-B720D9138C42}|JWTAUTH\\JWTAUTH.csproj|solutionrelative:jwtauth\\entities\\data\\userdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AA056583-453D-7DF0-DAEC-B720D9138C42}|JWTAUTH\\JWTAUTH.csproj|c:\\users\\\u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\\documents\\github\\programming-handbooks\\authasp\\jwtauth\\jwtauth\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AA056583-453D-7DF0-DAEC-B720D9138C42}|JWTAUTH\\JWTAUTH.csproj|solutionrelative:jwtauth\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AA056583-453D-7DF0-DAEC-B720D9138C42}|JWTAUTH\\JWTAUTH.csproj|c:\\users\\\u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\\documents\\github\\programming-handbooks\\authasp\\jwtauth\\jwtauth\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{AA056583-453D-7DF0-DAEC-B720D9138C42}|JWTAUTH\\JWTAUTH.csproj|solutionrelative:jwtauth\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 9,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "RefreshTokenRequestDto.cs",
+              "DocumentMoniker": "C:\\Users\\\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\\Documents\\Github\\Programming-Handbooks\\authASP\\JWTAUTH\\JWTAUTH\\Entities\\Models\\RefreshTokenRequestDto.cs",
+              "RelativeDocumentMoniker": "JWTAUTH\\Entities\\Models\\RefreshTokenRequestDto.cs",
+              "ToolTip": "C:\\Users\\\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\\Documents\\Github\\Programming-Handbooks\\authASP\\JWTAUTH\\JWTAUTH\\Entities\\Models\\RefreshTokenRequestDto.cs",
+              "RelativeToolTip": "JWTAUTH\\Entities\\Models\\RefreshTokenRequestDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-25T12:38:45Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "IAuthService.cs",
+              "DocumentMoniker": "C:\\Users\\\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\\Documents\\Github\\Programming-Handbooks\\authASP\\JWTAUTH\\JWTAUTH\\Services\\IAuthService.cs",
+              "RelativeDocumentMoniker": "JWTAUTH\\Services\\IAuthService.cs",
+              "ToolTip": "C:\\Users\\\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\\Documents\\Github\\Programming-Handbooks\\authASP\\JWTAUTH\\JWTAUTH\\Services\\IAuthService.cs",
+              "RelativeToolTip": "JWTAUTH\\Services\\IAuthService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-25T12:31:23.906Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{e8b06f52-6d01-11d2-aa7d-00c04f990343}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "TokenResponseDto.cs",
+              "DocumentMoniker": "C:\\Users\\\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\\Documents\\Github\\Programming-Handbooks\\authASP\\JWTAUTH\\JWTAUTH\\Entities\\Models\\TokenResponseDto.cs",
+              "RelativeDocumentMoniker": "JWTAUTH\\Entities\\Models\\TokenResponseDto.cs",
+              "ToolTip": "C:\\Users\\\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\\Documents\\Github\\Programming-Handbooks\\authASP\\JWTAUTH\\JWTAUTH\\Entities\\Models\\TokenResponseDto.cs",
+              "RelativeToolTip": "JWTAUTH\\Entities\\Models\\TokenResponseDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-25T12:30:49.523Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "C:\\Users\\\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\\Documents\\Github\\Programming-Handbooks\\authASP\\JWTAUTH\\JWTAUTH\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "JWTAUTH\\Properties\\launchSettings.json",
+              "ToolTip": "C:\\Users\\\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\\Documents\\Github\\Programming-Handbooks\\authASP\\JWTAUTH\\JWTAUTH\\Properties\\launchSettings.json",
+              "RelativeToolTip": "JWTAUTH\\Properties\\launchSettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-07-24T10:23:27.941Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\\Documents\\Github\\Programming-Handbooks\\authASP\\JWTAUTH\\JWTAUTH\\Program.cs",
+              "RelativeDocumentMoniker": "JWTAUTH\\Program.cs",
+              "ToolTip": "C:\\Users\\\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\\Documents\\Github\\Programming-Handbooks\\authASP\\JWTAUTH\\JWTAUTH\\Program.cs",
+              "RelativeToolTip": "JWTAUTH\\Program.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAowBsAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-24T10:19:04.029Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AuthService.cs",
+              "DocumentMoniker": "C:\\Users\\\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\\Documents\\Github\\Programming-Handbooks\\authASP\\JWTAUTH\\JWTAUTH\\Services\\AuthService.cs",
+              "RelativeDocumentMoniker": "JWTAUTH\\Services\\AuthService.cs",
+              "ToolTip": "C:\\Users\\\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\\Documents\\Github\\Programming-Handbooks\\authASP\\JWTAUTH\\JWTAUTH\\Services\\AuthService.cs",
+              "RelativeToolTip": "JWTAUTH\\Services\\AuthService.cs",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAowDgAAABAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-24T09:53:29.261Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\\Documents\\Github\\Programming-Handbooks\\authASP\\JWTAUTH\\JWTAUTH\\Entities\\User.cs",
+              "RelativeDocumentMoniker": "JWTAUTH\\Entities\\User.cs",
+              "ToolTip": "C:\\Users\\\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\\Documents\\Github\\Programming-Handbooks\\authASP\\JWTAUTH\\JWTAUTH\\Entities\\User.cs",
+              "RelativeToolTip": "JWTAUTH\\Entities\\User.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAA9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-24T09:51:05.828Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "C:\\Users\\\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\\Documents\\Github\\Programming-Handbooks\\authASP\\JWTAUTH\\JWTAUTH\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "JWTAUTH\\Controllers\\AuthController.cs",
+              "ToolTip": "C:\\Users\\\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\\Documents\\Github\\Programming-Handbooks\\authASP\\JWTAUTH\\JWTAUTH\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "JWTAUTH\\Controllers\\AuthController.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAAAswCUAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-24T09:51:01.346Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "UserDBContext.cs",
+              "DocumentMoniker": "C:\\Users\\\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\\Documents\\Github\\Programming-Handbooks\\authASP\\JWTAUTH\\JWTAUTH\\Entities\\Data\\UserDBContext.cs",
+              "RelativeDocumentMoniker": "JWTAUTH\\Entities\\Data\\UserDBContext.cs",
+              "ToolTip": "C:\\Users\\\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\\Documents\\Github\\Programming-Handbooks\\authASP\\JWTAUTH\\JWTAUTH\\Entities\\Data\\UserDBContext.cs",
+              "RelativeToolTip": "JWTAUTH\\Entities\\Data\\UserDBContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-24T09:27:34.059Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
