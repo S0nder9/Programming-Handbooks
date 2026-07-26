@@ -1,8 +1,9 @@
-﻿using JWTAUTH.Entities;
+﻿using JWTAUTH.Common.Exceptions;
+using JWTAUTH.Entities;
 using JWTAUTH.Entities.Data;
 using JWTAUTH.Entities.Models;
+using JWTAUTH.Models.DTOs;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -14,110 +15,137 @@ namespace JWTAUTH.Services
 {
     public class AuthService(UserDBContext context, IConfiguration configuration) : IAuthService
     {
-        public async Task<TokenResponseDto?> LoginAsync(UserDTO request)
+        public async Task<TokenResponseDto> LoginAsync(UserDTO request)
         {
-            var user = await context.Users.FirstOrDefaultAsync(u => u.Username == request.Username);
-
-            if (user == null)
-            {
-                return null;
-            }
+            var user = await context.Users.FirstOrDefaultAsync(u => u.Username == request.Username)
+                ?? throw new UnauthorizedAppException("Invalid username or password", "INVALID_CREDENTIALS");
 
             if (new PasswordHasher<User>().VerifyHashedPassword(user, user.PasswordHash, request.Password)
                 == PasswordVerificationResult.Failed)
-            {
-                return null;
-            }
+                throw new UnauthorizedAppException("Invalid username or password", "INVALID_CREDENTIALS");
 
-            var response = await CreateTokenResponse(user);
+            var refreshToken = await GenerateAndSaveRefreshTokenAsync(user);
 
-            return response;
-        }
-
-        public async Task<User?> RegisterAsync(UserDTO request)
-        {
-            if (await context.Users.AnyAsync(u => u.Username == request.Username))
-            {
-                return null; // User already exists
-            }
-
-            var user = new User();
-
-            var hashedPassword = new PasswordHasher<User>().HashPassword(user, request.Password);
-
-            user.Username = request.Username;
-            user.PasswordHash = hashedPassword;
-
-            context.Users.Add(user);
-            await context.SaveChangesAsync();
-
-            return user;
-        }
-
-        private async Task<TokenResponseDto?> RefreshTokensAsync(RefreshTokenRequestDto request)
-        {
-            var user = await ValidateRefreshTokenAsync(request.UserId, request.RefreshToken);
-
-            if (user == null)
-            {
-                return null;
-            }
-
-            var response = await CreateTokenResponse(user);
-
-            return response;
-        }
-
-        private async Task<TokenResponseDto> CreateTokenResponse(User? user) { 
             return new TokenResponseDto
             {
-                AccessToken = CreateToken(user),
-                RefreshToken = await GenerateAndSaveRefreshTokenAsync(user)
+                AccessToken = CreateAccessToken(user),
+                RefreshToken = refreshToken
             };
         }
 
-        private async Task<User> ValidateRefreshTokenAsync (Guid userId, string refreshToken)
+        public async Task<UserResponseDto> RegisterAsync(UserDTO request)
         {
-            var user = await context.Users.FirstOrDefaultAsync(u => u.Id == userId && u.RefreshToken == refreshToken);
+            if (await context.Users.AnyAsync(u => u.Username == request.Username))
+                throw new ConflictException("User with this username already exists", "USERNAME_TAKEN");
 
-            if (user == null || user.RefreshTokenExpiryTime <= DateTime.UtcNow)
+            var user = new User { Username = request.Username };
+            user.PasswordHash = new PasswordHasher<User>().HashPassword(user, request.Password);
+
+            context.Users.Add(user);
+
+            try
             {
-                return null;
+                await context.SaveChangesAsync();
             }
+            catch (DbUpdateException)
+            {
+                throw new ConflictException("User with this username already exists", "USERNAME_TAKEN");
+            }
+
+            return new UserResponseDto
+            {
+                Id = user.Id,
+                Username = user.Username,
+                Role = user.Role
+            };
+        }
+
+        public async Task<RefreshResponseDto> RefreshAccessTokenAsync(RefreshTokenRequestDto request)
+        {
+            var user = await ValidateRefreshTokenAsync(request.UserId, request.RefreshToken)
+                ?? throw new UnauthorizedAppException("Invalid or expired refresh token", "INVALID_REFRESH_TOKEN");
+
+            return new RefreshResponseDto
+            {
+                AccessToken = CreateAccessToken(user)
+            };
+        }
+
+        public async Task LogoutAsync(Guid userId)
+        {
+            var user = await context.Users.FindAsync(userId)
+                ?? throw new NotFoundException("User not found", "USER_NOT_FOUND");
+
+            if (user.RefreshTokenHash == null || user.RefreshTokenExpiryTime == null)
+                throw new UnauthorizedAppException("No active session to log out from", "NO_ACTIVE_SESSION");
+
+            user.RefreshTokenHash = null;
+            user.RefreshTokenExpiryTime = null;
+            await context.SaveChangesAsync();
+        }
+
+        public async Task<UserResponseDto> GetByIdAsync(Guid userId)
+        {
+            var user = await context.Users.FindAsync(userId)
+                ?? throw new NotFoundException("User not found", "USER_NOT_FOUND");
+
+            return new UserResponseDto
+            {
+                Id = user.Id,
+                Username = user.Username,
+                Role = user.Role
+            };
+        }
+
+
+        private async Task<User?> ValidateRefreshTokenAsync(Guid userId, string refreshToken)
+        {
+            var user = await context.Users.FirstOrDefaultAsync(u => u.Id == userId);
+
+            if (user?.RefreshTokenHash == null
+                || user.RefreshTokenExpiryTime == null
+                || user.RefreshTokenExpiryTime <= DateTime.UtcNow)
+                return null;
+
+            var storedBytes = Convert.FromBase64String(user.RefreshTokenHash);
+            var incomingBytes = Convert.FromBase64String(HashToken(refreshToken));
+
+            if (storedBytes.Length != incomingBytes.Length ||
+                !CryptographicOperations.FixedTimeEquals(storedBytes, incomingBytes))
+                return null;
 
             return user;
         }
 
-        private string GenerateRefreshToken()
+        private static string GenerateRefreshToken()
         {
             var randomNumber = new byte[32];
-            using (var rng = RandomNumberGenerator.Create())
-            {
-                rng.GetBytes(randomNumber);
-                return Convert.ToBase64String(randomNumber);
-            }
+            using var rng = RandomNumberGenerator.Create();
+            rng.GetBytes(randomNumber);
+            return Convert.ToBase64String(randomNumber);
         }
+
+        private static string HashToken(string token) =>
+            Convert.ToBase64String(SHA256.HashData(Encoding.UTF8.GetBytes(token)));
 
         private async Task<string> GenerateAndSaveRefreshTokenAsync(User user)
         {
             var refreshToken = GenerateRefreshToken();
-            user.RefreshToken = refreshToken;
-            user.RefreshTokenExpiryTime = DateTime.Now.AddDays(7); // 7 days validity for refresh token
-            //context.Users.Update(user);
+            user.RefreshTokenHash = HashToken(refreshToken);
+            user.RefreshTokenExpiryTime = DateTime.UtcNow.AddDays(7);
             await context.SaveChangesAsync();
             return refreshToken;
         }
 
-        private string CreateToken(User user)
+        private string CreateAccessToken(User user)
         {
-            var tokenKey = configuration.GetValue<string>("AppSettings:Token");
-            if (string.IsNullOrWhiteSpace(tokenKey))
-                throw new InvalidOperationException("JWT signing key not configured. Set AppSettings:Token.");
-
-            var claims = new List<Claim> { new Claim(ClaimTypes.Name, user.Username), 
-                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-            new Claim(ClaimTypes.Role, user.Role)
-           };
+            var tokenKey = configuration.GetValue<string>("AppSettings:Token")!;
+            var claims = new List<Claim>
+            {
+                new(ClaimTypes.Name, user.Username),
+                new(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new(ClaimTypes.Role, user.Role)
+            };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(tokenKey));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512);
@@ -126,7 +154,7 @@ namespace JWTAUTH.Services
                 issuer: configuration.GetValue<string>("AppSettings:Issuer"),
                 audience: configuration.GetValue<string>("AppSettings:Audience"),
                 claims: claims,
-                expires: DateTime.Now.AddDays(1),
+                expires: DateTime.UtcNow.AddMinutes(15),
                 signingCredentials: creds
             );
 

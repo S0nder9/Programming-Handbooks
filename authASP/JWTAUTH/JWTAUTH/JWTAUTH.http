@@ -1,6 +1,41 @@
 @JWTAUTH_HostAddress = http://localhost:5108
+@accessToken = {{login.response.body.accessToken}}
+@refreshToken = {{login.response.body.refreshToken}}
+@userId = {{register.response.body.id}}
 
-GET {{JWTAUTH_HostAddress}}/weatherforecast/
-Accept: application/json
+### Register
+# @name register
+POST {{JWTAUTH_HostAddress}}/api/auth/register
+Content-Type: application/json
 
-###
+{
+  "username": "testuser",
+  "password": "Test123!"
+}
+
+### Login
+# @name login
+POST {{JWTAUTH_HostAddress}}/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "testuser",
+  "password": "Test123!"
+}
+
+### Refresh tokens
+POST {{JWTAUTH_HostAddress}}/api/auth/refresh-tokens
+Content-Type: application/json
+
+{
+  "userId": "{{userId}}",
+  "refreshToken": "{{refreshToken}}"
+}
+
+### Authenticated endpoint
+GET {{JWTAUTH_HostAddress}}/api/auth
+Authorization: Bearer {{accessToken}}
+
+### Admin-only endpoint
+GET {{JWTAUTH_HostAddress}}/api/auth/admin-only
+Authorization: Bearer {{accessToken}}

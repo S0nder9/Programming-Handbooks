@@ -1,0 +1,13 @@
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Build output
+bin/
+obj/
+
+# IDE
+.vs/
+*.user
+*.suo
